@@ -23,5 +23,6 @@
 ![NEUAutoSign](NEUAutoSign.png)
 
 
+进一步地，你可以去[Server酱](https://sc.ftqq.com/)那里配置你的自动签到后微信推送——每天早上服务器自动签到之后会向你问好
 
 Have fun！

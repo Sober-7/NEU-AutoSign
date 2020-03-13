@@ -14,6 +14,7 @@ post_data = {} # 在这里填写个人数据
 __headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',
              'Content-Type': 'application/json;charset=UTF-8',
              'Authorization': 'Basic dnVlOnZ1ZQ=='}
+SCKEY = "" # Server酱的Token
 
 login_page = requests.post("http://stuinfo.neu.edu.cn/api/auth/oauth/token",
                             headers = __headers,
@@ -32,7 +33,8 @@ try :
 except:
     print('[ - ] Login error.')
     print(get_sign_page.text)
-    # requests.get('https://sc.ftqq.com/yourToken',params = dict(text='Something wrong.',desp=verify.text))
+    if SCKEY:
+        requests.get('https://sc.ftqq.com/'+SCKEY+'.send',params = dict(text='Something wrong.',desp='Login error.'))
     sys.exit(0)
     
 sign_page = requests.get("http://stuinfo.neu.edu.cn/cloud-xxbl/studentinfo",
@@ -52,8 +54,9 @@ try :
 except:
     print('[ - ] Sign error.')
     print(sign.text)
-    # requests.get('https://sc.ftqq.com/yourToken',params = dict(text='Something wrong.',desp=verify.text))
-    sys.exit(0) 
+    if SCKEY:
+        requests.get('https://sc.ftqq.com/'+SCKEY+'.send',params = dict(text='Something wrong.',desp='Sign error. '+sign.text))
+    sys.exit(0)
 
 verify = requests.get("http://stuinfo.neu.edu.cn/cloud-xxbl/getStudentInfo",
                     headers = __headers,
@@ -61,7 +64,9 @@ verify = requests.get("http://stuinfo.neu.edu.cn/cloud-xxbl/getStudentInfo",
 try :
     assert(re.findall(r'success":true',verify.text,re.S|re.M)[0]=='success":true') 
     print('[ + ] Verify success.')
-    # requests.get('https://sc.ftqq.com/yourToken',params = dict(text='Bonjour, Sir.',desp='AutoSign completed successfully.'))
+    if SCKEY:
+        requests.get('https://sc.ftqq.com/'+SCKEY+'.send',params = dict(text='Bonjour, Sir.',desp='AutoSign completed successfully.'))
 except:
     print('[ - ] Verify error.')
-    # requests.get('https://sc.ftqq.com/yourToken',params = dict(text='Something wrong.',desp=verify.text))
+    if SCKEY:
+        requests.get('https://sc.ftqq.com/'+SCKEY+'.send',params = dict(text='Something wrong.',desp='Verify error. '+verify.text))

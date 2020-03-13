@@ -33,6 +33,8 @@ except:
     print('[ - ] Login error.')
     print(get_sign_page.text)
     # requests.get('https://sc.ftqq.com/yourToken',params = dict(text='Something wrong.',desp=verify.text))
+    sys.exit(0)
+    
 sign_page = requests.get("http://stuinfo.neu.edu.cn/cloud-xxbl/studentinfo",
                             headers = __headers,
                             params = dict(tag=re.findall(r'data\":\"(.*?)\"',get_sign_page.text,re.S|re.M)[0]),

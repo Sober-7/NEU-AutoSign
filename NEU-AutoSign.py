@@ -53,7 +53,7 @@ except:
     print('[ - ] Sign error.')
     print(sign.text)
     # requests.get('https://sc.ftqq.com/yourToken',params = dict(text='Something wrong.',desp=verify.text))
-    sys.exit(0)
+    sys.exit(0) 
 
 verify = requests.get("http://stuinfo.neu.edu.cn/cloud-xxbl/getStudentInfo",
                     headers = __headers,

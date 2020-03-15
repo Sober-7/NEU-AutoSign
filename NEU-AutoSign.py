@@ -5,9 +5,9 @@ import re
 import time
 import json
 
-login_payload = {'username': ********, # 在这里填写用户名
+login_payload = {'username': 20194974, # 在这里填写用户名
                 'grant_type': 'password',
-                'password': ******, # 在这里填写密码
+                'password': 201094, # 在这里填写密码
                 'imageCodeResult':'' ,
                 'imageKey':'' }
 post_data = {} # 在这里填写个人数据
